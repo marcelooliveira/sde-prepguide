@@ -118,8 +118,30 @@ class Program
         Console.WriteLine("Algoritmo: O(1) - Constante");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        //Definição:
+        // O(1) representa um algoritmo cuja complexidade de tempo é constante, ou seja,
+        // o tempo de execução não depende do tamanho da entrada.
+        // Ele sempre executa em um tempo fixo, independentemente do número de elementos processados.
+
         // TODO: Implemente aqui o código para O(1) - Constante
+
+        //Exemplo 1:
+        int[] array = { 1, 2, 3, 4, 5 };
+        int firstElement = array[0]; // Acesso ao primeiro elemento é O(1)
+        Console.WriteLine(
+            $"Acesso ao primeiro elemento do array: {firstElement} (O(1))"
+        );
+
+        //Exemplo 2:
+        Console.WriteLine(
+            $"Impressão de uma mensagem fixa: 'Hello, World!' (O(1))"
+        );
+
+        //Exemplo 3:
+        Console.WriteLine(
+            $"Verificação de paridade de um número: 10 é par? {(10 % 2 == 0)} (O(1))"
+        );
     }
 
     static void BigOLogarithmic()
@@ -129,19 +151,80 @@ class Program
         Console.WriteLine("Algoritmo: O(log n) - Logarítmica");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        //Definição
+        // O(log n) representa um algoritmo cuja complexidade de tempo é logarítmica, ou seja,
+        // o tempo de execução cresce de forma logarítmica em relação ao tamanho da entrada.
+        // Ele é mais eficiente do que O(n) para grandes entradas, pois reduz o número de operações necessárias.
+
         // TODO: Implemente aqui o código para O(log n) - Logarítmica
+
+        // Exemplo 1:Busca Binária
+        int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        int target = 7;
+        int left = 0;
+        int right = sortedArray.Length - 1;
+        Console.WriteLine(
+            $"Busca binária por {target} em um array ordenado (O(log n))"
+        );
+        Console.WriteLine(
+            $"Índice encontrado: {BinarySearch(sortedArray, target)}"
+        );
+
+        int BinarySearch( int[] array, int target )
+        {
+            int left = 0;
+            int right = array.Length - 1;
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+                if (array[mid] == target)
+                    return mid;
+                else if (array[mid] < target)
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+            return -1; // Elemento não encontrado
+        }
     }
 
     static void BigOLinear()
     {
         Console.Clear();
-        Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine("Algoritmo: O(n) - Linear");
-        Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        //Definição:
+        // O(n) representa um algoritmo cuja complexidade de tempo é linear, ou seja,
+        // o tempo de execução cresce linearmente em relação ao tamanho da entrada.
+
         // TODO: Implemente aqui o código para O(n) - Linear
+
+        //Exemplo 1: Soma de elementos em um array
+        Console.WriteLine(
+            $"Soma de elementos em um array (O(n))"
+        );
+
+        //Exemplo 2: Verificação de existência de um elemento em um array
+        int[] array = { 101, -2, 3, 40, 55 };
+        int target = 3;
+        Console.WriteLine(
+            $"Verificação de existência de {target} em um array (O(n))"
+        );
+        
+        bool exists = false;
+        foreach (int num in array)
+        {
+            if (num == target)
+            {
+                exists = true;
+                break;
+            }
+        }
+        Console.WriteLine(
+            $"Elemento {target} existe no array? {exists}"
+        );
     }
 
     static void BigOLinearLog()
@@ -151,8 +234,64 @@ class Program
         Console.WriteLine("Algoritmo: O(n log n) - Linear-Log");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        //Descrição:
+        // O(n log n) representa um algoritmo cuja complexidade de tempo é linear-logarítmica, ou seja, o tempo de execução cresce em relação
+        // ao produto do tamanho da entrada e o logaritmo do tamanho da entrada.
+
         // TODO: Implemente aqui o código para O(n log n) - Linear-Log
+
+        //Exemplo 1: Merge Sort
+        Console.WriteLine(
+            $"Ordenação de um array usando Merge Sort (O(n log n))"
+        );
+        Console.WriteLine(
+            $"Array antes da ordenação: [5, 2, 9, 1, 5, 6]"
+        );
+          int[] array = { 5, 2, 9, 1, 5, 6 };
+        MergeSort(array);
+        Console.WriteLine(
+            $"Array após a ordenação: [{string.Join(", ", array)}]"
+        );
+        Console.WriteLine(
+            $"Merge Sort é um algoritmo de ordenação eficiente com complexidade O(n log n)"
+        );
+        Console.WriteLine(
+            $"Ele divide o array em subarrays menores, ordena cada subarray e depois os combina para formar o array ordenado final."
+        );
+
+        void MergeSort( int[] arr )
+          {
+              if (arr.Length <= 1)
+                  return;
+  
+              int mid = arr.Length / 2;
+              int[] left = new int[mid];
+              int[] right = new int[arr.Length - mid];
+  
+              Array.Copy(arr, 0, left, 0, mid);
+              Array.Copy(arr, mid, right, 0, arr.Length - mid);
+  
+              MergeSort(left);
+              MergeSort(right);
+              Merge(left, right, arr);
+        }
+
+        void Merge( int[] left, int[] right, int[] result )
+        {
+            int i = 0, j = 0, k = 0;
+            while (i < left.Length && j < right.Length)
+            {
+                if (left[i] <= right[j])
+                    result[k++] = left[i++];
+                else
+                    result[k++] = right[j++];
+            }
+            while (i < left.Length)
+                result[k++] = left[i++];
+            while (j < right.Length)
+                result[k++] = right[j++];
+        }
     }
 
     static void BigOQuadratic()
@@ -162,8 +301,45 @@ class Program
         Console.WriteLine("Algoritmo: O(n²) - Quadrática");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        // Descrição:
+        // O(n²) representa um algoritmo cuja complexidade de tempo é quadrática,
+        // ou seja, o tempo de execução cresce proporcionalmente ao quadrado do tamanho da entrada.
+
         // TODO: Implemente aqui o código para O(n²) - Quadrática
+
+        // Exemplo 1: Bubble Sort
+        Console.WriteLine(
+            $"Ordenação de um array usando Bubble Sort (O(n²))"
+        );
+        Console.WriteLine(
+            $"Array antes da ordenação: [5, 2, 9, 1, 5, 6]"
+        );
+        int[] array = { 5, 2, 9, 1, 5, 6 };
+        BubbleSort(array);
+        Console.WriteLine(
+            $"Array após a ordenação: [{string.Join(", ", array)}]"
+        );
+        Console.WriteLine(
+            $"Bubble Sort é um algoritmo de ordenação simples, mas ineficiente para grandes conjuntos de dados, com complexidade O(n²)"
+        );
+        void BubbleSort(int[] arr)
+        {
+            int n = arr.Length;
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (arr[j] > arr[j + 1])
+                    {
+                        // Troca arr[j] e arr[j + 1]
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
     }
 
     static void BigOExponential()
@@ -173,8 +349,29 @@ class Program
         Console.WriteLine("Algoritmo: O(2ⁿ) - Exponencial");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        //Descrição:
+        // O(2ⁿ) representa um algoritmo cuja complexidade de tempo é exponencial, ou seja,
+        // o tempo de execução cresce exponencialmente em relação ao tamanho da entrada.
+
         // TODO: Implemente aqui o código para O(2ⁿ) - Exponencial
+        //Exemplo 1: Fibonacci Recursivo
+        Console.WriteLine(
+            $"Cálculo do n-ésimo número de Fibonacci usando recursão (O(2ⁿ))"
+        );
+        int n = 30; // Cuidado: valores maiores podem levar a tempos de execução muito longos
+        Console.WriteLine(
+            $"O {n}-ésimo número de Fibonacci é: {Fibonacci(n)}"
+        );
+        Console.WriteLine(
+            $"O algoritmo recursivo para Fibonacci tem complexidade O(2ⁿ) devido à grande quantidade de chamadas recursivas redundantes."
+        );
+        int Fibonacci(int num)
+        {
+            if (num <= 1)
+                return num;
+            return Fibonacci(num - 1) + Fibonacci(num - 2);
+        }
     }
 
     // ==================== STACKS & QUEUES ====================
