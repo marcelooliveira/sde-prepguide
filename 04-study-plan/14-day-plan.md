@@ -11,7 +11,7 @@ Pensado para quem tem 1-2 horas por dia disponíveis. Ajuste conforme sua dispon
 
 - [ ] Ler `README.md` (raiz) completamente
 - [ ] Ler `01-coding-challenge/README.md`
-- [ ] Estudar `01-coding-challenge/algorithms/big-o-notation.md`
+- [ ] Estudar `01-coding-challenge/algorithms/01-big-o-notation.md`
 - [ ] Assistir a pelo menos 2 vídeos da [playlist oficial](https://www.youtube.com/playlist?list=PL9JNmYfQa0bjNaqTlDQwECjsu78k2FwKC)
 
 ---
@@ -19,7 +19,7 @@ Pensado para quem tem 1-2 horas por dia disponíveis. Ajuste conforme sua dispon
 ### Dia 2 — BFS e Grafos
 **Objetivo:** dominar BFS e resolver o problema do guia.
 
-- [ ] Estudar `01-coding-challenge/algorithms/bfs-dfs-graphs.md`
+- [ ] Estudar `01-coding-challenge/algorithms/07-bfs-dfs-graphs.md`
 - [ ] Resolver **BFS Shortest Reach** no HackerRank
 - [ ] Ler sobre [Dijkstra no GeeksForGeeks](https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/)
 - [ ] Implementar Dijkstra do zero (sem copiar)
@@ -29,7 +29,7 @@ Pensado para quem tem 1-2 horas por dia disponíveis. Ajuste conforme sua dispon
 ### Dia 3 — DFS e Árvores Binárias
 **Objetivo:** dominar tree traversals e resolver os problemas do guia.
 
-- [ ] Estudar `01-coding-challenge/algorithms/trees-binary.md`
+- [ ] Estudar `01-coding-challenge/algorithms/04-trees-binary.md`
 - [ ] Resolver **Tree Height of a Binary Tree** no HackerRank
 - [ ] Resolver **Tree Level Order Traversal** no HackerRank
 - [ ] Tentar resolver **Swap Nodes [Algo]** no HackerRank
@@ -39,7 +39,7 @@ Pensado para quem tem 1-2 horas por dia disponíveis. Ajuste conforme sua dispon
 ### Dia 4 — Pilhas, Filas e Brackets
 **Objetivo:** solidificar pilhas e resolver o problema de brackets.
 
-- [ ] Estudar `01-coding-challenge/algorithms/stacks-queues.md`
+- [ ] Estudar `01-coding-challenge/algorithms/02-stacks-queues.md`
 - [ ] Resolver **Balanced Brackets** no HackerRank
 - [ ] Resolver **Valid Parentheses** no LeetCode (reforço)
 - [ ] Implementar uma pilha com `min()` em O(1) (Min Stack — LeetCode 155)
@@ -49,7 +49,7 @@ Pensado para quem tem 1-2 horas por dia disponíveis. Ajuste conforme sua dispon
 ### Dia 5 — Heaps e Running Median
 **Objetivo:** entender heaps e resolver o problema mais desafiador do guia.
 
-- [ ] Estudar `01-coding-challenge/algorithms/heaps.md`
+- [ ] Estudar `01-coding-challenge/algorithms/05-heaps.md`
 - [ ] Resolver **Find the Running Median** no HackerRank
 - [ ] Resolver **Kth Largest Element** no LeetCode (reforço)
 
@@ -58,7 +58,7 @@ Pensado para quem tem 1-2 horas por dia disponíveis. Ajuste conforme sua dispon
 ### Dia 6 — Tries e Contacts
 **Objetivo:** implementar Trie do zero e resolver o problema.
 
-- [ ] Estudar `01-coding-challenge/algorithms/tries.md`
+- [ ] Estudar `01-coding-challenge/algorithms/06-tries.md`
 - [ ] Resolver **Contacts** no HackerRank
 - [ ] Implementar **Implement Trie** no LeetCode
 
@@ -79,7 +79,7 @@ Pensado para quem tem 1-2 horas por dia disponíveis. Ajuste conforme sua dispon
 ### Dia 8 — Ordenação e Padrões
 **Objetivo:** dominar algoritmos O(n log n) e padrões como sliding window.
 
-- [ ] Estudar `01-coding-challenge/algorithms/sorting.md`
+- [ ] Estudar `01-coding-challenge/algorithms/03-sorting.md`
 - [ ] Resolver **Daily Temperatures** (LeetCode 739) — pilha monotônica
 - [ ] Resolver **Sliding Window Maximum** (LeetCode 239)
 

@@ -23,13 +23,13 @@ Este repositório é o seu guia completo de preparação para o processo seletiv
 📁 01-coding-challenge/
 │   ├── README.md                     ← visão geral do desafio de código
 │   ├── 📁 algorithms/                ← notas detalhadas por tópico
-│   │   ├── big-o-notation.md
-│   │   ├── bfs-dfs-graphs.md
-│   │   ├── trees-binary.md
-│   │   ├── stacks-queues.md
-│   │   ├── heaps.md
-│   │   ├── tries.md
-│   │   └── sorting.md
+│   │   ├── 01-big-o-notation.md
+│   │   ├── 02-stacks-queues.md
+│   │   ├── 03-sorting.md
+│   │   ├── 04-trees-binary.md
+│   │   ├── 05-heaps.md
+│   │   ├── 06-tries.md
+│   │   └── 07-bfs-dfs-graphs.md
 │   ├── 📁 practice-problems/
 │   │   ├── problem-list.md           ← lista de problemas recomendados
 │   │   └── tips-and-strategies.md   ← estratégias para a prova

@@ -57,10 +57,10 @@ O desafio de código é realizado na plataforma **HackerRank** e tem duração t
 
 ## Tópicos Prioritários
 
-1. **[Big O Notation](algorithms/big-o-notation.md)** — fundação obrigatória
-2. **[BFS / DFS / Grafos](algorithms/bfs-dfs-graphs.md)** — muito cobrado
-3. **[Árvores Binárias](algorithms/trees-binary.md)** — altura, traversal, BST
-4. **[Pilhas e Filas](algorithms/stacks-queues.md)** — brackets, monotonic stack
-5. **[Heaps](algorithms/heaps.md)** — running median, k-th element
-6. **[Tries](algorithms/tries.md)** — prefixos, autocompletar
-7. **[Ordenação](algorithms/sorting.md)** — merge sort, quicksort
+1. **[Big O Notation](algorithms/01-big-o-notation.md)** — fundação obrigatória
+2. **[Pilhas e Filas](algorithms/02-stacks-queues.md)** — brackets, monotonic stack
+3. **[Ordenação](algorithms/03-sorting.md)** — merge sort, quicksort
+4. **[Árvores Binárias](algorithms/04-trees-binary.md)** — altura, traversal, BST
+5. **[Heaps](algorithms/05-heaps.md)** — running median, k-th element
+6. **[Tries](algorithms/06-tries.md)** — prefixos, autocompletar
+7. **[BFS / DFS / Grafos](algorithms/07-bfs-dfs-graphs.md)** — muito cobrado
