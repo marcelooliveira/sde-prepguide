@@ -437,19 +437,90 @@ class Program
         Console.WriteLine("Algoritmo: Stack (Pilha) - LIFO");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        // Definição:
+        // Stack (Pilha) é uma estrutura de dados que segue a ordem LIFO (Last In, First Out),
+        // ou seja, o último elemento inserido é o primeiro a ser removido.
+
         // TODO: Implemente aqui o código para Stack (LIFO)
+
+        // Exemplo 1: Implementação de uma pilha usando array
+        Console.WriteLine(
+            $"Implementação de uma pilha usando array (LIFO)"
+        );
+        Stack<int> stack = new Stack<int>();
+        stack.Push(1);
+        stack.Push(2);
+        stack.Push(3);
+        Console.WriteLine(
+            $"Elementos na pilha: {string.Join(", ", stack)}"
+        );
+
+        // Exemplo 2: Uso de pilha para inverter uma string
+        string input = "Hello, World!";
+        string reversed = ReverseString(input);
+        Console.WriteLine(
+            $"String original: {input}"
+        );
+        Console.WriteLine(
+            $"String invertida usando pilha: {reversed}"
+        );
+        string ReverseString(string str)
+        {
+            Stack<char> charStack = new Stack<char>();
+            foreach (char c in str)
+                charStack.Push(c);
+            char[] reversedChars = new char[str.Length];
+            for (int i = 0; i < str.Length; i++)
+                reversedChars[i] = charStack.Pop();
+            return new string(reversedChars);
+        }
     }
 
     static void QueueFIFO()
     {
         Console.Clear();
-        Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine("Algoritmo: Queue (Fila) - FIFO");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        // Descrição:
+        // Queue (Fila) é uma estrutura de dados que segue a ordem FIFO (First In, First Out),
+        // ou seja, o primeiro elemento inserido é o primeiro a ser removido.
+
         // TODO: Implemente aqui o código para Queue (FIFO)
+
+        // Exemplo 1: Implementação de uma fila usando array
+        Console.WriteLine(
+            $"Implementação de uma fila usando array (FIFO)"
+        );
+        Queue<int> queue = new Queue<int>();
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
+        Console.WriteLine(
+            $"Elementos na fila: {string.Join(", ", queue)}"
+        );
+        // Exemplo 2: Uso de fila para simular uma fila de atendimento
+        Console.WriteLine(
+            $"Simulação de uma fila de atendimento usando Queue"
+        );
+        Queue<string> atendimentoQueue = new Queue<string>();
+        atendimentoQueue.Enqueue("Cliente A");
+        atendimentoQueue.Enqueue("Cliente B");
+        atendimentoQueue.Enqueue("Cliente C");
+        Console.WriteLine(
+            $"Clientes na fila de atendimento: {string.Join(", ", atendimentoQueue)}"
+        );
+        Console.WriteLine(
+            $"Atendendo o próximo cliente: {atendimentoQueue.Dequeue()}"
+        );
+        Console.WriteLine(
+            $"Clientes restantes na fila de atendimento: {string.Join(", ", atendimentoQueue)}"
+        );
+        Console.WriteLine(
+            $"Queue é uma estrutura de dados útil para gerenciar tarefas em ordem de chegada, como filas de impressão, atendimento ao cliente, etc."
+        );
     }
 
     static void BalancedBrackets()
@@ -459,8 +530,57 @@ class Program
         Console.WriteLine("Algoritmo: Balanced Brackets");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        // Descrição:
+        // O algoritmo de Balanced Brackets verifica se os parênteses, colchetes e chaves em uma string estão balanceados,
+        // ou seja, cada abertura tem um fechamento correspondente na ordem correta.
+
         // TODO: Implemente aqui o código para Balanced Brackets
+
+        // Exemplo 1: Verificação de uma string com parênteses balanceados
+        string input = "{[()]}";
+        Console.WriteLine(
+            $"Verificação de parênteses balanceados para a string: {input}"
+        );
+        Console.WriteLine(
+            $"A string é balanceada? {IsBalanced(input)}"
+        );
+        Console.WriteLine(
+            $"O algoritmo utiliza uma pilha para armazenar os caracteres de abertura e verifica se cada caractere de fechamento corresponde ao topo da pilha."
+        );
+        Console.WriteLine(
+            $"Se a pilha estiver vazia no final da verificação, a string é considerada balanceada."
+        );
+        Console.WriteLine(
+            $"Exemplo de string não balanceada: {input + "]"}"
+        );
+        Console.WriteLine(
+            $"A string é balanceada? {IsBalanced(input + "]")}"
+        );
+        Console.WriteLine(
+            $"Exemplo de string não balanceada: {input + "{"}"
+        );
+
+        bool IsBalanced(string str)
+        {
+            Stack<char> stack = new Stack<char>();
+            foreach (char c in str)
+            {
+                if (c == '(' || c == '{' || c == '[')
+                    stack.Push(c);
+                else if (c == ')' || c == '}' || c == ']')
+                {
+                    if (stack.Count == 0)
+                        return false;
+                    char top = stack.Pop();
+                    if ((c == ')' && top != '(') ||
+                        (c == '}' && top != '{') ||
+                        (c == ']' && top != '['))
+                        return false;
+                }
+            }
+            return stack.Count == 0;
+        }
     }
 
     static void MonotonicStack()
@@ -470,8 +590,39 @@ class Program
         Console.WriteLine("Algoritmo: Monotonic Stack");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        // Descrição:
+        // Monotonic Stack é uma estrutura de dados que mantém os elementos em ordem crescente ou decrescente,
+        // permitindo resolver problemas como o próximo maior elemento, próximo menor elemento, etc.
+
         // TODO: Implemente aqui o código para Monotonic Stack
+
+        // Exemplo 1: Encontrar o próximo maior elemento para cada elemento em um array
+        Console.WriteLine(
+            $"Encontrar o próximo maior elemento para cada elemento em um array usando Monotonic Stack"
+        );
+        int[] array = { 2, 1, 2, 4, 3 };
+        int[] nextGreater = NextGreaterElements(array);
+        Console.WriteLine(
+            $"Array original: [{string.Join(", ", array)}]"
+        );
+        Console.WriteLine(
+            $"Próximo maior elemento para cada posição: [{string.Join(", ", nextGreater)}]"
+        );
+        int[] NextGreaterElements(int[] nums)
+        {
+            int n = nums.Length;
+            int[] result = new int[n];
+            Stack<int> stack = new Stack<int>();
+            for (int i = n - 1; i >= 0; i--)
+            {
+                while (stack.Count > 0 && stack.Peek() <= nums[i])
+                    stack.Pop();
+                result[i] = stack.Count == 0 ? -1 : stack.Peek();
+                stack.Push(nums[i]);
+            }
+            return result;
+        }
     }
 
     static void DequeDoubleEnded()
@@ -481,8 +632,38 @@ class Program
         Console.WriteLine("Algoritmo: Deque (Double-Ended Queue)");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
-        
+
+        // Descrição:
+        // Deque (Double-Ended Queue) é uma estrutura de dados que permite inserção
+        // e remoção de elementos tanto no início quanto no final da fila.
+
         // TODO: Implemente aqui o código para Deque
+
+        // Exemplo 1: Implementação de um deque usando LinkedList
+        Console.WriteLine(
+            $"Implementação de um deque usando LinkedList"
+        );
+        LinkedList<int> deque = new LinkedList<int>();
+        // Inserção no final
+        deque.AddLast(1);
+        deque.AddLast(2);
+        // Inserção no início
+        deque.AddFirst(0);
+        deque.AddFirst(1);
+        Console.WriteLine(
+            $"Elementos no deque: {string.Join(", ", deque)}"
+        );
+        // Remoção do início
+        deque.RemoveFirst();
+        // Remoção do final
+        deque.RemoveLast();
+        Console.WriteLine(
+            $"Elementos no deque após remoções: {string.Join(", ", deque)}"
+        );
+
+        Console.WriteLine(
+            $"Deque é uma estrutura de dados versátil que pode ser usada para implementar filas, pilhas e outras estruturas de dados."
+        );
     }
 
     static void SlidingWindowMaximum()
@@ -492,8 +673,52 @@ class Program
         Console.WriteLine("Algoritmo: Sliding Window Maximum");
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
+
+        // Descrição: O algoritmo Sliding Window Maximum encontra o valor máximo em uma janela deslizante de tamanho fixo em um array.
+        // Usa um Deque para manter os índices dos elementos em ordem decrescente de valor.
+
+        Console.WriteLine("Encontrar o máximo em cada janela deslizante de tamanho 3");
+        int[] nums = { 1, 3, -1, -3, 5, 3, 6, 7 };
+        int k = 3;
+        int[] result = SlidingWindowMaximumHelper(nums, k);
         
-        // TODO: Implemente aqui o código para Sliding Window Maximum
+        Console.WriteLine($"Array: [{string.Join(", ", nums)}]");
+        Console.WriteLine($"Tamanho da janela: {k}");
+        Console.WriteLine($"Máximo de cada janela: [{string.Join(", ", result)}]");
+        Console.WriteLine();
+        Console.WriteLine("Explicação do algoritmo:");
+        Console.WriteLine("- Usa um Deque para armazenar índices dos elementos");
+        Console.WriteLine("- Mantém os índices em ordem decrescente de valor");
+        Console.WriteLine("- O primeiro elemento do Deque é sempre o índice do máximo");
+        Console.WriteLine("- Complexidade: O(n) - cada elemento é adicionado e removido uma vez");
+
+        int[] SlidingWindowMaximumHelper(int[] nums, int k)
+        {
+            if (nums.Length == 0) return new int[0];
+            
+            int[] result = new int[nums.Length - k + 1];
+            LinkedList<int> deque = new LinkedList<int>(); // Armazena índices
+            
+            for (int i = 0; i < nums.Length; i++)
+            {
+                // Remove índices fora da janela atual
+                if (deque.Count > 0 && deque.First.Value < i - k + 1)
+                    deque.RemoveFirst();
+                
+                // Remove elementos menores do final do deque
+                while (deque.Count > 0 && nums[deque.Last.Value] <= nums[i])
+                    deque.RemoveLast();
+                
+                // Adiciona o índice atual
+                deque.AddLast(i);
+                
+                // Armazena o máximo da janela
+                if (i >= k - 1)
+                    result[i - k + 1] = nums[deque.First.Value];
+            }
+            
+            return result;
+        }
     }
 
     static void DFSIterative()
@@ -504,7 +729,78 @@ class Program
         Console.WriteLine("═══════════════════════════════════════════════════════");
         Console.WriteLine();
         
-        // TODO: Implemente aqui o código para DFS Iterativo
+        // Descrição: DFS (Depth-First Search) Iterativo usa um Stack para explorar todos os nós de um grafo
+        // sem usar recursão. Explora profundamente um caminho antes de voltar e explorar outro.
+
+        Console.WriteLine("Exemplo de DFS Iterativo em um grafo:");
+        Console.WriteLine();
+        
+        // Criar um grafo simples usando lista de adjacência
+        Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>
+        {
+            { 1, new List<int> { 2, 3 } },
+            { 2, new List<int> { 4, 5 } },
+            { 3, new List<int> { 6 } },
+            { 4, new List<int>() },
+            { 5, new List<int>() },
+            { 6, new List<int> { 7 } },
+            { 7, new List<int>() }
+        };
+        
+        Console.WriteLine("Grafo:");
+        Console.WriteLine("  1");
+        Console.WriteLine(" / \\");
+        Console.WriteLine("2   3");
+        Console.WriteLine("/ \\  \\");
+        Console.WriteLine("4  5  6");
+        Console.WriteLine("      |");
+        Console.WriteLine("      7");
+        Console.WriteLine();
+        
+        List<int> dfsResult = DFSIterativeHelper(graph, 1);
+        Console.WriteLine($"Ordem de visita (DFS Iterativo começando do nó 1): [{string.Join(", ", dfsResult)}]");
+        Console.WriteLine();
+        Console.WriteLine("Explicação do algoritmo:");
+        Console.WriteLine("- Usa um Stack para armazenar os nós a serem visitados");
+        Console.WriteLine("- Começa pelo nó inicial e o coloca no Stack");
+        Console.WriteLine("- Enquanto o Stack não está vazio:");
+        Console.WriteLine("  * Remove um nó do topo do Stack");
+        Console.WriteLine("  * Se não foi visitado, marca como visitado");
+        Console.WriteLine("  * Adiciona todos os vizinhos não visitados ao Stack");
+        Console.WriteLine("- Complexidade: O(V + E) onde V é número de vértices e E é número de arestas");
+
+        List<int> DFSIterativeHelper(Dictionary<int, List<int>> graph, int start)
+        {
+            List<int> visited = new List<int>();
+            HashSet<int> visitedSet = new HashSet<int>();
+            Stack<int> stack = new Stack<int>();
+            
+            stack.Push(start);
+            
+            while (stack.Count > 0)
+            {
+                int node = stack.Pop();
+                
+                if (!visitedSet.Contains(node))
+                {
+                    visitedSet.Add(node);
+                    visited.Add(node);
+                    
+                    // Adiciona os vizinhos ao stack em ordem reversa para manter a ordem correta
+                    if (graph.ContainsKey(node))
+                    {
+                        for (int i = graph[node].Count - 1; i >= 0; i--)
+                        {
+                            int neighbor = graph[node][i];
+                            if (!visitedSet.Contains(neighbor))
+                                stack.Push(neighbor);
+                        }
+                    }
+                }
+            }
+            
+            return visited;
+        }
     }
 
     // ==================== SORTING ====================
