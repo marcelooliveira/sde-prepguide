@@ -6,9 +6,9 @@ class Program03
 	{
 		string rawPayload = "LOG|2026-05-31|TX_99887766|SUCCESS";
 
-		// TODO: Use Span<char> ou ReadOnlySpan<char> para fatiar (slice) a string 
-		// e isolar o trecho "TX_99887766" sem alocar uma nova string na memória (Heap).
+		// TODO: Use ReadOnlySpan<char> e os métodos .AsSpan(), .IndexOf() e .Slice()
+		// para isolar o trecho "TX_99887766" com custo zero de alocação de memória.
 
-		Console.WriteLine("Extraction completed. Check memory profile.");
+		Console.WriteLine("Parsing completed without garbage creation.");
 	}
 }

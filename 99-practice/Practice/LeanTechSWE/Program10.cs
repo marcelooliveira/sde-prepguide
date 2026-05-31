@@ -4,30 +4,33 @@ class Program10
 {
 	static void MainX()
 	{
-		// O entrevistador pode alterar este array para null, vazio, ou conter zeros/negativos a qualquer momento!
-		int[] injectedData = { 4, 8, 15, 16, 23, 42 };
+		// ATENÇÃO: O entrevistador poderá alterar este array para null, para um array vazio {}, 
+		// ou introduzir um elemento 0 no meio da execução para quebrar seu código!
+		int[] inputData = { 10, 20, 30, 40 };
 
 		try
 		{
-			double result = CalculateMetrics(injectedData);
-			Console.WriteLine($"Metric Score: {result}");
+			double executionResult = ComputeWeightedMetrics(inputData);
+			Console.WriteLine($"Result: {executionResult}");
 		}
-		catch (Exception ex)
+		catch (ArgumentException ex)
 		{
-			Console.WriteLine($"Engine gracefully protected against: {ex.Message}");
+			Console.WriteLine($"Engine gracefully caught a business exception: {ex.Message}");
 		}
 	}
 
-	static double CalculateMetrics(int[] data)
+	static double ComputeWeightedMetrics(int[] data)
 	{
-		// TODO: Implemente as Cláusulas de Guarda de nível Sênior para evitar quebras de CPU (como Division by Zero).
-		// Se os dados passarem, execute a lógica de agregação com segurança.
+		// TODO: Implemente aqui as validações de nível Sênior para interceptar problemas de dados
+		// antes que eles causem falhas fatais ou exceções não tratadas na CPU (ex: DivideByZeroException).
 
-		double product = 1.0;
-		foreach (var val in data)
+		double totalSum = 0;
+		foreach (var item in data)
 		{
-			product *= val;
+			totalSum += item;
 		}
-		return Math.Pow(product, 1.0 / data.Length);
+
+		// Exemplo de ponto crítico: se a soma for zero, gerará uma falha matemática
+		return 1000.0 / totalSum;
 	}
 }

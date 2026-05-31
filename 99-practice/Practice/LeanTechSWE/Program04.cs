@@ -5,11 +5,11 @@ class Program04
 {
 	static void MainX()
 	{
-		int bufferSize = 65536; // 64KB
+		int requiredSize = 65536; // 64KB
 
-		// TODO: Em vez de usar "var buffer = new byte[bufferSize];" 
-		// Use a Standard Library (.NET ArrayPool) para alugar e devolver a memória eficientemente.
+		// TODO: Use o ArrayPool<byte>.Shared para alugar um buffer temporário,
+		// use-o e garanta a sua devolução segura dentro de um bloco try/finally.
 
-		Console.WriteLine("Buffer processed and recycled safely.");
+		Console.WriteLine("Array leased, utilized, and returned safely to the pool.");
 	}
 }

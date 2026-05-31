@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 class Program07
 {
-	private static int _sharedAccountBalance = 0;
+	private static int _consolidatedBalance = 0;
 
 	static async Task MainX()
 	{
@@ -15,14 +15,14 @@ class Program07
 			{
 				for (int j = 0; j < 100_000; j++)
 				{
-					// TODO: Este trecho causa Race Condition. Corrija-o da forma mais leve possível
-					// sem causar Deadlocks ou travamento excessivo de CPU.
-					_sharedAccountBalance++;
+					// TODO: Este ponto causa uma Race Condition. 
+					// Corrija usando primitivas de sincronização rápidas (ex: classe Interlocked).
+					_consolidatedBalance++;
 				}
 			});
 		}
 
 		await Task.WhenAll(tasks);
-		Console.WriteLine($"Expected Balance: 1000000 | Actual Balance: {_sharedAccountBalance}");
+		Console.WriteLine($"Expected: 1000000 | Actual Balance: {_consolidatedBalance}");
 	}
 }

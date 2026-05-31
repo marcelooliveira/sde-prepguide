@@ -4,27 +4,27 @@ using System.Threading.Tasks;
 
 class Program08
 {
-	// TODO: Instancie o mecanismo de sincronização assíncrona correto para limitar a 3 acessos.
+	// TODO: Instancie a primitiva correta do .NET para gerenciar acessos assíncronos concorrentes (limite de 2).
 
 	static async Task MainX()
 	{
-		Task[] users = new Task[10];
-		for (int i = 0; i < 10; i++)
+		Task[] calls = new Task[5];
+		for (int i = 0; i < 5; i++)
 		{
-			int userId = i;
-			users[i] = ProcessPaymentAsync(userId);
+			int id = i;
+			calls[i] = SimulateExternalCallAsync(id);
 		}
-		await Task.WhenAll(users);
+		await Task.WhenAll(calls);
 	}
 
-	static async Task ProcessPaymentAsync(int userId)
+	static async Task SimulateExternalCallAsync(int callId)
 	{
-		// TODO: Adquira a trava de concorrência aqui de forma não bloqueante.
+		// TODO: Aguarde a liberação da trava de forma assíncrona.
 
-		Console.WriteLine($"[ENTER] User {userId} processing payment...");
-		await Task.Delay(500); // Simulando I/O-bound
-		Console.WriteLine($"[EXIT] User {userId} finished.");
+		Console.WriteLine($"[ENTER] Call {callId} is executing inside the critical section...");
+		await Task.Delay(1000); // Simulando operação I/O bound
+		Console.WriteLine($"[EXIT] Call {callId} is leaving.");
 
-		// TODO: Libere a trava.
+		// TODO: Libere a trava de concorrência.
 	}
 }

@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 class Program09
 {
 	static void MainX()
 	{
-		var dataStream = Enumerable.Range(1, 5_000_000).ToList();
+		List<int> numbers = Enumerable.Range(1, 10_000_000).ToList();
 
-		// TODO: Transforme o pipeline LINQ abaixo usando PLINQ (AsParallel) 
-		// para processar as computações pesadas dividindo entre os cores da CPU.
-		var processedData = dataStream
-			.Where(x => x % 3 == 0)
-			.Select(x => Math.Sqrt(x))
+		Console.WriteLine("Starting parallel computation...");
+
+		// TODO: Modifique a expressão LINQ abaixo usando PLINQ (.AsParallel())
+		// para distribuir a carga pesada de processamento entre os cores da CPU de forma balanceada.
+		var processed = numbers
+			.Where(n => n % 2 != 0)
+			.Select(n => Math.Sqrt(n))
 			.ToList();
 
-		Console.WriteLine($"Processing pipeline streaming finished. Total items: {processedData.Count}");
+		Console.WriteLine($"Computation finished. Total processed items: {processed.Count}");
 	}
 }

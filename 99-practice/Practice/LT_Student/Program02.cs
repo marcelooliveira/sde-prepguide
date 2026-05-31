@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.Immutable;
+using System.Threading.Tasks;
 
 class Program02
 {
 	static void MainX()
 	{
-		// Configurações estáticas vindas de um banco/arquivo
 		var rawConfig = new Dictionary<string, string>
 		{
 			{ "ServiceA", "http://api.servicea.internal" },
@@ -14,12 +14,11 @@ class Program02
 			{ "ServiceC", "http://api.servicec.internal" }
 		};
 
-		// TODO: Transforme a coleção acima em uma estrutura otimizada do .NET 8 
-		// para cenários de altíssima concorrência e leitura imutável (Frozen).
+		// TODO: Transfira os dados para uma coleção concorrente adequada do .NET Core 3.
 
 		string targetService = "ServiceB";
-		// TODO: Realize a busca ultra-rápida do targetService.
+		// TODO: Realize a busca segura e ultra-rápida do targetService usando TryGetValue.
 
-		Console.WriteLine($"Route found for {targetService}");
+		Console.WriteLine("Search execution completed.");
 	}
 }

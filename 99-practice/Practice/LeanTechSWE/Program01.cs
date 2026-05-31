@@ -6,13 +6,14 @@ class Program01
 	static void Main()
 	{
 		// Simulando a carga pesada de dados inserida pelo entrevistador
-		List<long> transactionIds = GenerateMassiveIds(10_000_000);
+		List<long> transactionIds = GenerateMassiveIds(5_000_000);
 
 		Console.WriteLine("Processing starts now...");
 		var watch = System.Diagnostics.Stopwatch.StartNew();
 
-		// TODO: Implemente a deduplicação e filtragem eficiente aqui.
+		// TODO: Implemente a deduplicação e filtragem eficiente.
 		// O objetivo é obter apenas os IDs pares e únicos com a menor complexidade de tempo/espaço possível.
+		// Dica: Inicialize a capacidade da estrutura para evitar resizes na memória.
 
 		watch.Stop();
 		Console.WriteLine($"Finished in: {watch.ElapsedMilliseconds}ms");
@@ -23,7 +24,7 @@ class Program01
 		var list = new List<long>(count);
 		var rand = new Random(42);
 		for (int i = 0; i < count; i++)
-			list.Add(rand.Next(1, count / 2)); // Forçando duplicatas deliberadas
+			list.Add(rand.Next(1, count / 2));
 		return list;
 	}
 }

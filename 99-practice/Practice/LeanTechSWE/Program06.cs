@@ -2,25 +2,25 @@
 
 class Program06
 {
-	struct PerformanceMetrics
+	struct ServiceMetric
 	{
-		public int ExecutionTime { get; set; }
-		public string ServiceName { get; set; }
+		public int LatencyMs;
+		public string Name;
 	}
 
 	static void MainX()
 	{
-		PerformanceMetrics[] metrics = new PerformanceMetrics[]
+		ServiceMetric[] metrics = new ServiceMetric[]
 		{
-			new() { ExecutionTime = 120, ServiceName = "Auth" },
-			new() { ExecutionTime = 45, ServiceName = "Gateway" },
-			new() { ExecutionTime = 300, ServiceName = "Payment" },
-			new() { ExecutionTime = 45, ServiceName = "Logging" }
+			new ServiceMetric { LatencyMs = 150, Name = "Auth" },
+			new ServiceMetric { LatencyMs = 30, Name = "Gateway" },
+			new ServiceMetric { LatencyMs = 400, Name = "Payment" },
+			new ServiceMetric { LatencyMs = 30, Name = "HealthCheck" }
 		};
 
-		// TODO: Ordene o array "metrics" com base no ExecutionTime.
-		// Requisito: Deve ser ordenado In-Place (modificando o próprio array sem criar cópias).
+		// TODO: Ordene o array 'metrics' pelo campo LatencyMs de forma In-Place,
+		// sem usar LINQ (.OrderBy), modificando diretamente a estrutura original.
 
-		Console.WriteLine("In-place sort executed successfully.");
+		Console.WriteLine("In-place ordering completed.");
 	}
 }
