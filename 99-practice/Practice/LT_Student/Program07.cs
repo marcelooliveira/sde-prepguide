@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 
 class Program07
 {
+	//solution to exercise 7
 	private static int _consolidatedBalance = 0;
+	private static object _lock = new();
 
 	static async Task MainX()
 	{
@@ -17,7 +19,12 @@ class Program07
 				{
 					// TODO: Este ponto causa uma Race Condition. 
 					// Corrija usando primitivas de sincronização rápidas (ex: classe Interlocked).
-					_consolidatedBalance++;
+
+					//old code:
+					//_consolidatedBalance++;
+
+					//new code:
+					Interlocked.Increment(ref _consolidatedBalance);
 				}
 			});
 		}

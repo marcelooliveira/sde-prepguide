@@ -10,6 +10,26 @@ class Program05
 
 		// TODO: Implemente um algoritmo O(n) para achar e imprimir os dois índices.
 
+		//Answer to Problem 5:
+
+		var result = new int[2];
+		var valueXIndex = new Dictionary<int, int>();
+		for (int i = 0; i < balances.Length; i++)
+		{
+			var balance = balances[i];
+			var delta = targetSum - balance;
+			if (valueXIndex.TryGetValue(delta, out int value))
+			{
+				result[0] = value;
+				result[1] = i;
+				break;
+			}
+			valueXIndex[balance] = i;
+		}
+
+		Console.WriteLine($"{result[0]} and {result[1]}");
+
+
 		Console.WriteLine("Algorithm execution finished.");
 	}
 }

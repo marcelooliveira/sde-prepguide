@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+// solution to exercise 9
 class Program09
 {
 	static void MainX()
@@ -13,6 +14,7 @@ class Program09
 		// TODO: Modifique a expressão LINQ abaixo usando PLINQ (.AsParallel())
 		// para distribuir a carga pesada de processamento entre os cores da CPU de forma balanceada.
 		var processed = numbers
+			.AsParallel()
 			.Where(n => n % 2 != 0)
 			.Select(n => Math.Sqrt(n))
 			.ToList();

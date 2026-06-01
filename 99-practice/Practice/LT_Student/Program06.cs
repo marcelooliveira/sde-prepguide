@@ -2,10 +2,23 @@
 
 class Program06
 {
-	struct ServiceMetric
+	class ServiceMetric : IComparable<ServiceMetric>
 	{
 		public int LatencyMs;
 		public string Name;
+
+		public int CompareTo(ServiceMetric? other)
+		{
+			if (other == null)
+				return 1;
+
+			if (LatencyMs < other.LatencyMs)
+				return -1;
+			else if (LatencyMs > other.LatencyMs)
+				return 1;
+			else
+				return 0;
+		}
 	}
 
 	static void MainX()
@@ -20,6 +33,10 @@ class Program06
 
 		// TODO: Ordene o array 'metrics' pelo campo LatencyMs de forma In-Place,
 		// sem usar LINQ (.OrderBy), modificando diretamente a estrutura original.
+
+		//Answer to Problem 6:
+
+		Array.Sort(metrics);
 
 		Console.WriteLine("In-place ordering completed.");
 	}

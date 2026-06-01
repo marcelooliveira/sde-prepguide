@@ -14,10 +14,23 @@ class Program02
 			{ "ServiceC", "http://api.servicec.internal" }
 		};
 
+		//Solution to the Exercise 2
+
 		// TODO: Transfira os dados para uma coleção concorrente adequada do .NET Core 3.
+
+		var newConfig = new ConcurrentDictionary<string, string>(rawConfig);
 
 		string targetService = "ServiceB";
 		// TODO: Realize a busca segura e ultra-rápida do targetService usando TryGetValue.
+
+		if (newConfig.TryGetValue(targetService, out string? value)) //defensive search
+		{
+			Console.WriteLine($"Value: {value}");
+		}
+		else
+		{
+			Console.WriteLine($"Value not found for service: {targetService}");
+		}
 
 		Console.WriteLine("Search execution completed.");
 	}
