@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LT_Student", "LT_Student\LT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LT_Student2", "LT_Student2\LT_Student2.csproj", "{24197318-46F2-489A-8BE2-074277682C12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode_Concurrency", "LeetCode_Concurrency\LeetCode_Concurrency.csproj", "{3AFED953-E826-4AAD-994A-E56839A51406}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode_Concurrency_Tests", "LeetCode_Concurrency_Tests\LeetCode_Concurrency_Tests.csproj", "{13C1F828-F241-49E7-AFA0-D07B892DF260}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{24197318-46F2-489A-8BE2-074277682C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24197318-46F2-489A-8BE2-074277682C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24197318-46F2-489A-8BE2-074277682C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AFED953-E826-4AAD-994A-E56839A51406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AFED953-E826-4AAD-994A-E56839A51406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AFED953-E826-4AAD-994A-E56839A51406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AFED953-E826-4AAD-994A-E56839A51406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13C1F828-F241-49E7-AFA0-D07B892DF260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13C1F828-F241-49E7-AFA0-D07B892DF260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C1F828-F241-49E7-AFA0-D07B892DF260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13C1F828-F241-49E7-AFA0-D07B892DF260}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,97 @@
+// LC1116 - Print Zero Even Odd
+// Three threads share one ZeroEvenOdd object.
+// Thread A calls zero() – prints 0 before every number.
+// Thread B calls even() – prints even numbers.
+// Thread C calls odd()  – prints odd  numbers.
+// Output for n=5: "0102030405"
+
+using System;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace LeetCode.Concurrency
+{
+    // ─── Solution ───────────────────────────────────────────────────────────────
+
+    public class LC1116_ZeroEvenOdd
+    {
+        private readonly int _n;
+
+        // zero starts open; odd/even wait for zero to fire them
+        private readonly SemaphoreSlim _zeroSem = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _oddSem  = new SemaphoreSlim(0, 1);
+        private readonly SemaphoreSlim _evenSem = new SemaphoreSlim(0, 1);
+
+        public LC1116_ZeroEvenOdd(int n) => _n = n;
+
+        public void Zero(Action<int> printNumber)
+        {
+            for (int i = 1; i <= _n; i++)
+            {
+                _zeroSem.Wait();
+                printNumber(0);
+                if (i % 2 == 1) _oddSem.Release();
+                else            _evenSem.Release();
+            }
+        }
+
+        public void Odd(Action<int> printNumber)
+        {
+            for (int i = 1; i <= _n; i += 2)
+            {
+                _oddSem.Wait();
+                printNumber(i);
+                _zeroSem.Release();
+            }
+        }
+
+        public void Even(Action<int> printNumber)
+        {
+            for (int i = 2; i <= _n; i += 2)
+            {
+                _evenSem.Wait();
+                printNumber(i);
+                _zeroSem.Release();
+            }
+        }
+    }
+
+    // ─── Tests ───────────────────────────────────────────────────────────────────
+
+    public class LC1116_Tests
+    {
+        private static string Run(int n)
+        {
+            var sb  = new StringBuilder();
+            var obj = new LC1116_ZeroEvenOdd(n);
+            var lk  = new object();
+
+            void Print(int v) { lock (lk) sb.Append(v); }
+
+            var t1 = Task.Run(() => obj.Zero(Print));
+            var t2 = Task.Run(() => obj.Even(Print));
+            var t3 = Task.Run(() => obj.Odd(Print));
+
+            Task.WaitAll(t1, t2, t3);
+            return sb.ToString();
+        }
+
+        [Theory]
+        [InlineData(1, "01")]
+        [InlineData(2, "0102")]
+        [InlineData(3, "010203")]
+        [InlineData(5, "0102030405")]
+        [InlineData(6, "010203040506")]
+        public void Output_MatchesExpected(int n, string expected) =>
+            Assert.Equal(expected, Run(n));
+
+        [Fact]
+        public void RepeatedRuns_AreConsistent()
+        {
+            for (int i = 0; i < 20; i++)
+                Assert.Equal("0102030405", Run(5));
+        }
+    }
+}
