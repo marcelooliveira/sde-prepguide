@@ -57,17 +57,33 @@ namespace LeetCode.Concurrency
 
     public class LC1117_H2O
     {
+		private readonly SemaphoreSlim _gateH = new(1);
+		private readonly SemaphoreSlim _gateO = new(0);
+		private int hCount = 0;
+		
         public LC1117_H2O() { }
 
         public void Hydrogen(Action releaseHydrogen)
         {
-            releaseHydrogen();
-        }
+			_gateH.Wait();
+            Interlocked.Increment(ref hCount);
+
+			// releaseHydrogen() outputs "H". Do not change or remove this line.
+			releaseHydrogen();
+            if (hCount % 2 == 0)
+                _gateO.Release();
+            else
+                _gateH.Release();
+		}
 
         public void Oxygen(Action releaseOxygen)
         {
-            releaseOxygen();
-        }
+			_gateO.Wait();
+
+			// releaseOxygen() outputs "O". Do not change or remove this line.
+			releaseOxygen();
+			_gateH.Release();
+		}
     }
 
     // ─── Tests ───────────────────────────────────────────────────────────────────

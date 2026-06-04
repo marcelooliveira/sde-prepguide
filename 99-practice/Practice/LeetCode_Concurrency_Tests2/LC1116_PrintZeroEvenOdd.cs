@@ -55,37 +55,58 @@ namespace LeetCode.Concurrency
 
     public class LC1116_ZeroEvenOdd
     {
-        private readonly int _n;
+		private int n;
+		private int nextNonZeroNumber = 1;
+		private readonly SemaphoreSlim _gateZero = new(1, 1);
+		private readonly SemaphoreSlim _gateOdd = new(0, 1);
+		private readonly SemaphoreSlim _gateEven = new(0, 1);
 
 		public LC1116_ZeroEvenOdd(int n)
 		{
-			_n = n;
+			this.n = n;
 		}
 
+		// printNumber(x) outputs "x", where x is an integer.
 		public void Zero(Action<int> printNumber)
-        {
-            for (int i = 1; i <= _n; i++)
-            {
-                printNumber(0);
-            }
-        }
+		{
+			for (var i = 1; i <= n; i++)
+			{
+				_gateZero.Wait();
+				//_oddPrinted.WaitOne();
+				printNumber(0);
+				if (nextNonZeroNumber % 2 == 0)
+				{
+					_gateEven.Release(); // release even
+				}
+				else
+				{
+					_gateOdd.Release(); // release odd
+				}
+			}
+		}
 
-        public void Odd(Action<int> printNumber)
-        {
-            for (int i = 1; i <= _n; i += 2)
-            {
-                printNumber(i);
-            }
-        }
+		public void Even(Action<int> printNumber)
+		{
+			for (var i = 2; i <= n; i += 2)
+			{
+				_gateEven.Wait();
+				printNumber(nextNonZeroNumber);
+				Interlocked.Increment(ref nextNonZeroNumber);
+				_gateZero.Release(); //release zero
+			}
+		}
 
-        public void Even(Action<int> printNumber)
-        {
-            for (int i = 2; i <= _n; i += 2)
-            {
-                printNumber(i);
-            }
-        }
-    }
+		public void Odd(Action<int> printNumber)
+		{
+			for (var i = 1; i <= n; i += 2)
+			{
+				_gateOdd.Wait();
+				printNumber(nextNonZeroNumber);
+				Interlocked.Increment(ref nextNonZeroNumber);
+				_gateZero.Release(); //release zero
+			}
+		}
+	}
 
     // ─── Tests ───────────────────────────────────────────────────────────────────
 

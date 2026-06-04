@@ -67,34 +67,70 @@ namespace LeetCode.Concurrency
 	public class LC1195_FizzBuzz
 	{
 		private int n;
+		private readonly AutoResetEvent _fizzEvent = new(true); // AutoResetEvent = turnstile
+		private readonly AutoResetEvent _buzzEvent = new(false);
+		private readonly AutoResetEvent _fizzBuzzEvent = new(false);
+		private readonly AutoResetEvent _numberEvent = new(false);
 
-		public FizzBuzz(int n)
+		private readonly Func<int, bool> _isIsFizz = (int i) => (i % 3 == 0 && i % 5 != 0);
+		private readonly Func<int, bool> _isIsBuzz = (int i) => (i % 3 != 0 && i % 5 == 0);
+		private readonly Func<int, bool> _isIsFizzBuzz = (int i) => (i % 3 == 0 && i % 5 == 0);
+		private readonly Func<int, bool> _isNumber = (int i) => (i % 3 != 0 && i % 5 != 0);
+
+		public LC1195_FizzBuzz(int n)
 		{
 			this.n = n;
+
 		}
 
 		// printFizz() outputs "fizz".
 		public void Fizz(Action printFizz)
 		{
-
+			for (var i = 1; i <= n; i++)
+			{
+				_fizzEvent.WaitOne();
+				if (_isIsFizz(i))
+					printFizz();
+				_buzzEvent.Set();
+			}
 		}
 
 		// printBuzzz() outputs "buzz".
 		public void Buzz(Action printBuzz)
 		{
-
+			for (var i = 1; i <= n; i++)
+			{
+				_buzzEvent.WaitOne();
+				if (_isIsBuzz(i))
+					printBuzz();
+				_fizzBuzzEvent.Set();
+			}
 		}
 
 		// printFizzBuzz() outputs "fizzbuzz".
 		public void Fizzbuzz(Action printFizzBuzz)
 		{
 
+			for (var i = 1; i <= n; i++)
+			{
+				_fizzBuzzEvent.WaitOne();
+				if (_isIsFizzBuzz(i))
+					printFizzBuzz();
+				_numberEvent.Set();
+			}
 		}
 
 		// printNumber(x) outputs "x", where x is an integer.
 		public void Number(Action<int> printNumber)
 		{
+			for (var i = 1; i <= n; i++)
+			{
+				_numberEvent.WaitOne();
 
+				if (_isNumber(i))
+					printNumber(i);
+				_fizzEvent.Set();
+			}
 		}
 	}
 
@@ -113,7 +149,7 @@ namespace LeetCode.Concurrency
 			var t1 = Task.Run(() => fb.Number(i => Append(i.ToString())));
 			var t2 = Task.Run(() => fb.Fizz(() => Append("fizz")));
 			var t3 = Task.Run(() => fb.Buzz(() => Append("buzz")));
-			var t4 = Task.Run(() => fb.FizzBuzz(() => Append("fizzbuzz")));
+			var t4 = Task.Run(() => fb.Fizzbuzz(() => Append("fizzbuzz")));
 
 			Task.WaitAll(t1, t2, t3, t4);
 			return sb.ToString().TrimEnd();

@@ -45,22 +45,34 @@ namespace LeetCode.Concurrency
 
     public class LC1114_Foo
     {
-        public LC1114_Foo() { }
+        private readonly ManualResetEventSlim _firstDone = new(false);
+        private readonly ManualResetEventSlim _secondDone = new(false);
+
+        public LC1114_Foo()
+        {
+			_firstDone.Reset(); // bloqueia geral!
+		}
 
         public void First(Action printFirst)
         {
-            printFirst();
-        }
+			printFirst();
+            _firstDone.Set(); // primeiro já foi, set = done, green, go, só vai!
+		}
 
         public void Second(Action printSecond)
         {
-            printSecond();
-        }
+			_firstDone.Wait();  //só bloqueia se o _firstDone ainda não completou (set)
+			printSecond();
+			_secondDone.Set(); // primeiro já foi, set = done, green, go, só vai!
+		}
 
         public void Third(Action printThird)
         {
-            printThird();
-        }
+			_firstDone.Wait();  //só bloqueia se o _firstDone 
+			_secondDone.Wait();  //... e o segundo ainda não completaram (set)
+			printThird();
+
+		}
     }
 
     // ─── Tests ───────────────────────────────────────────────────────────────────

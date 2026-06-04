@@ -53,11 +53,7 @@ Constraints:
 1 <= n <= 1000
 */
 
-using System;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace LeetCode.Concurrency
 {
@@ -66,6 +62,9 @@ namespace LeetCode.Concurrency
     public class LC1115_FooBar
     {
         private readonly int _n;
+
+        private readonly AutoResetEvent _printedFooEvent = new(false);
+		private readonly AutoResetEvent _printedBarEvent = new(true);
 
 		public LC1115_FooBar(int n)
 		{
@@ -76,7 +75,9 @@ namespace LeetCode.Concurrency
         {
             for (int i = 0; i < _n; i++)
             {
+                _printedBarEvent.WaitOne(); // wait until printed "bar"
                 printFoo();
+				_printedFooEvent.Set(); // printed "foo", set = completed
             }
         }
 
@@ -84,8 +85,10 @@ namespace LeetCode.Concurrency
         {
             for (int i = 0; i < _n; i++)
             {
-                printBar();
-            }
+				_printedFooEvent.WaitOne(); // wait until printed "foo"
+				printBar();
+				_printedBarEvent.Set(); // printed "bar", set = completed
+			}
         }
     }
 

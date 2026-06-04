@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LT_Student2", "LT_Student2\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode_Concurrency_Tests", "LeetCode_Concurrency_Tests\LeetCode_Concurrency_Tests.csproj", "{13C1F828-F241-49E7-AFA0-D07B892DF260}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode_Concurrency_Tests2", "LeetCode_Concurrency_Tests2\LeetCode_Concurrency_Tests2.csproj", "{7990757B-418F-40E4-8AAB-87DD1B0B98C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode_Concurrency_Tests3", "LeetCode_Concurrency_Tests3\LeetCode_Concurrency_Tests3.csproj", "{0CC8DF58-BB49-4EFC-BDC8-13C71DD275AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode_Concurrency_Tests4", "LeetCode_Concurrency_Tests4\LeetCode_Concurrency_Tests4.csproj", "{AC5F13B4-910D-49ED-864F-00531E8C65C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +63,18 @@ Global
 		{13C1F828-F241-49E7-AFA0-D07B892DF260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13C1F828-F241-49E7-AFA0-D07B892DF260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13C1F828-F241-49E7-AFA0-D07B892DF260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7990757B-418F-40E4-8AAB-87DD1B0B98C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7990757B-418F-40E4-8AAB-87DD1B0B98C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7990757B-418F-40E4-8AAB-87DD1B0B98C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7990757B-418F-40E4-8AAB-87DD1B0B98C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CC8DF58-BB49-4EFC-BDC8-13C71DD275AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC8DF58-BB49-4EFC-BDC8-13C71DD275AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC8DF58-BB49-4EFC-BDC8-13C71DD275AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC8DF58-BB49-4EFC-BDC8-13C71DD275AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC5F13B4-910D-49ED-864F-00531E8C65C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC5F13B4-910D-49ED-864F-00531E8C65C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC5F13B4-910D-49ED-864F-00531E8C65C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC5F13B4-910D-49ED-864F-00531E8C65C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

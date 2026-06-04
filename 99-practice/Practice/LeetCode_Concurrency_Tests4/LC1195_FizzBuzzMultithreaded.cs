@@ -68,7 +68,7 @@ namespace LeetCode.Concurrency
 	{
 		private int n;
 
-		public FizzBuzz(int n)
+		public LC1195_FizzBuzz(int n)
 		{
 			this.n = n;
 		}
@@ -113,7 +113,7 @@ namespace LeetCode.Concurrency
 			var t1 = Task.Run(() => fb.Number(i => Append(i.ToString())));
 			var t2 = Task.Run(() => fb.Fizz(() => Append("fizz")));
 			var t3 = Task.Run(() => fb.Buzz(() => Append("buzz")));
-			var t4 = Task.Run(() => fb.FizzBuzz(() => Append("fizzbuzz")));
+			var t4 = Task.Run(() => fb.Fizzbuzz(() => Append("fizzbuzz")));
 
 			Task.WaitAll(t1, t2, t3, t4);
 			return sb.ToString().TrimEnd();
