@@ -55,9 +55,22 @@ namespace LeetCode.Concurrency
 
     public class LC1226_DiningPhilosophers
     {
-        public LC1226_DiningPhilosophers()
+        /*
+        - a is the id of a philosopher.
+        - b specifies the fork: {1 : left, 2 : right}.
+        - c specifies the operation: {1 : pick, 2 : put, 3 : eat}.
+         */
+
+        private readonly object[] _forks = new object[5];
+        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(4, 4);
+
+		public LC1226_DiningPhilosophers()
         {
-        }
+			for (int i = 0; i < 5; i++)
+			{
+				_forks[i] = new object();
+			}
+		}
 
         public void WantsToEat(
             int philosopher,
@@ -67,8 +80,25 @@ namespace LeetCode.Concurrency
             Action putLeftFork,
             Action putRightFork)
         {
+            _semaphore.Wait();
 
-        }
+            var leftFork = philosopher;
+            var rightFork = (philosopher + 1) % 5;
+
+            lock (_forks[Math.Min(leftFork, rightFork)])
+            {
+				lock (_forks[Math.Max(leftFork, rightFork)])
+				{
+                    pickLeftFork();
+                    pickRightFork();
+					eat();
+					putLeftFork();
+					putRightFork();
+				}
+			}
+
+            _semaphore.Release();
+		}
     }
 
     // ─── Tests ───────────────────────────────────────────────────────────────────
@@ -160,3 +190,6 @@ namespace LeetCode.Concurrency
         }
     }
 }
+
+
+
